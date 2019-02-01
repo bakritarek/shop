@@ -1,0 +1,70 @@
+<nav class="navbar navbar-default navbar-expand-lg " color-on-scroll="100" id="sectionsNav">
+  <div class="container">
+    <a href="/" class="" style="margin-left: 4.5%;">
+      <img src="http://www.nexti.de/images/logo_nexti.png" class="" alt="" style="width: 50px;height: 50px;">
+      Nexti Web App</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+      <span class="navbar-toggler-icon"></span>
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto" style="margin: auto;">
+        <li class="nav-item">
+          <h2 class="title">{{'description_header' | translate}}</h2>
+        </li>
+      </ul>
+      <ul class="navbar-nav" style="margin-right: 9.7%;">
+        <li class="dropdown nav-item">
+          <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
+            <img *ngIf="lang === 'de'" class="flag" src="https://lipis.github.io/flag-icon-css/flags/4x3/de.svg" style="width: 24px; height: 24px">
+            <img *ngIf="lang === 'en'" class="flag" src="https://lipis.github.io/flag-icon-css/flags/4x3/gb.svg" style="width: 24px; height: 24px">
+          </a>
+          <div class="dropdown-menu" title="de">
+            <span (click)="changeLang('de')" class="dropdown-item">
+              <div class="col-md-2">
+                <img  class="flag" src="https://lipis.github.io/flag-icon-css/flags/4x3/de.svg" style="width: 24px; height: 24px" >
+
+              </div>
+              <div class="col-md-4">
+                Deutsh
+              </div>
+            </span>
+
+            <span  (click)="changeLang('en')" class="dropdown-item" title="en">
+              <div class="col-md-2">
+                <img  class="flag" src="https://lipis.github.io/flag-icon-css/flags/4x3/gb.svg" style="width: 24px; height: 24px" title="en">
+
+              </div>
+              <div class="col-md-4">
+                English
+              </div>
+            </span>
+
+          </div>
+        </li>
+        <li  class="dropdown nav-item">
+          <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
+            <i class="material-icons">account_circle</i> qsdqsd
+          </a>
+          <div class="dropdown-menu dropdown-with-icons">
+            <a href="#" class="dropdown-item" >
+              <i class="material-icons">settings</i> {{'settings' | translate}}
+            </a>
+            <a href="#"  class="dropdown-item">
+              <i class="material-icons">fingerprint</i> {{'logout' | translate}}
+            </a>
+
+          </div>
+        </li>
+        <li class="nav-item" *ngIf="">
+          <a class="nav-link" title="{{'updated_detected' | translate}}"  data-toggle="tab">
+            <img src="http://192.168.100.136/nexti/web/img/icons8-database-import-50.png" style="width: 25px;height: 25px;">
+          </a>
+
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
