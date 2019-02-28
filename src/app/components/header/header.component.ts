@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {TranslateService} from '@ngx-translate/core';
+import {Router} from '@angular/router';
+import {AuthService} from '../../services/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -8,9 +10,16 @@ import {TranslateService} from '@ngx-translate/core';
 })
 export class HeaderComponent implements OnInit {
 lang: string;
+loged;
+username = localStorage.getItem('username');
 
-  constructor(private translate: TranslateService) {
+  constructor(private translate: TranslateService, private router: Router, private auth: AuthService) {
     this.lang = localStorage.getItem('lang');
+    if (localStorage.getItem('username')) {
+      this.loged = true;
+    } else {
+      this.loged = false;
+    }
   }
 
   ngOnInit() {
@@ -22,4 +31,12 @@ lang: string;
     this.translate.use(str);
     window.location.reload();
   }
+
+  Logout() {
+    this.router.navigate(['/login']);
+    return this.auth.Logout(localStorage.getItem('id'));
+
+  }
+
+
 }
