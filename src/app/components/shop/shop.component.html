@@ -24,67 +24,72 @@
                   <i class="material-icons">cached</i>
                 </button>
               </h4>
-              <div id="accordion" role="tablist">
-                <div class="card card-collapse" *ngFor="let cat of categorys">
-                  <div class="card-header" role="tab" id="headingTwo">
-                    <h5 class="mb-0">
-                      <a class="collapsed" data-toggle="collapse" href="#{{cat.id}}" aria-expanded="false" aria-controls="collapseTwo">
-                        {{cat.itemgroup1}}
-                        <i class="material-icons">keyboard_arrow_down</i>
-                      </a>
-                    </h5>
-                  </div>
-                  <div id="{{cat.id}}" class="collapse" role="tabpanel" aria-labelledby="headingTwo" *ngIf="cat.itemgroups">
-                    <div class="card-body">
+              <cdk-virtual-scroll-viewport itemSize="15">
+                  <div>{{categorys.length}}</div>
+                <div id="accordion" role="tablist"  *cdkVirtualFor="let cat of categorys">
+                  <div class="card card-collapse" >
+                    <div class="card-header" role="tab" id="headingTwo">
+                      <h5 class="mb-0">
+                        <a class="collapsed" data-toggle="collapse" href="#{{cat.id}}" aria-expanded="false" aria-controls="collapseTwo">
+                          {{cat.itemgroup1}}
+                          <i class="material-icons">keyboard_arrow_down</i>
+                        </a>
+                      </h5>
+                    </div>
+                    <div id="{{cat.id}}" class="collapse" role="tabpanel" aria-labelledby="headingTwo" *ngIf="cat.itemgroups">
+                      <div class="card-body">
+                        <div id="accordiong2" role="tablist">
+                          <div class="card card-collapse" *ngFor="let cat2 of cat.itemgroups">
+                            <div class="card-header" role="tab" id="headingTwog2">
+                              <h5 class="mb-0">
+                                <a class="collapsed" data-toggle="collapse" href="#{{cat2.id}}" aria-expanded="false" aria-controls="collapseTwog2">
+                                  {{cat2.itemgroup2}}
+                                  <i class="material-icons">keyboard_arrow_down</i>
+                                </a>
+                              </h5>
+                            </div>
+                            <div id="{{cat2.id}}" class="collapse" role="tabpanel" aria-labelledby="headingTwo" *ngIf="cat2.itemgroups">
+                              <div class="card-body">
 
-
-                      <div id="accordiong2" role="tablist">
-                        <div class="card card-collapse" *ngFor="let cat2 of cat.itemgroups">
-                          <div class="card-header" role="tab" id="headingTwog2">
-                            <h5 class="mb-0">
-                              <a class="collapsed" data-toggle="collapse" href="#{{cat2.id}}" aria-expanded="false" aria-controls="collapseTwog2">
-                                {{cat2.itemgroup2}}
-                                <i class="material-icons">keyboard_arrow_down</i>
-                              </a>
-                            </h5>
-                          </div>
-                          <div id="{{cat2.id}}" class="collapse" role="tabpanel" aria-labelledby="headingTwo" *ngIf="cat2.itemgroups">
-                            <div class="card-body">
-
-                              <div id="accordiong3" role="tablist">
-                                <div class="card card-collapse" *ngFor="let cat3 of cat2.itemgroups">
-                                  <div class="card-header" role="tab" id="headingTwog3">
-                                    <h5 class="mb-0">
-                                      <a class="collapsed" data-toggle="collapse" href="#{{cat3.id}}" aria-expanded="false" aria-controls="collapseTwog3">
-                                        {{cat3.itemgroup3}}
-                                        <i class="material-icons">keyboard_arrow_down</i>
-                                      </a>
-                                    </h5>
-                                  </div>
-                                  <div id="{{cat3.id}}" class="collapse" role="tabpanel" aria-labelledby="headingTwo">
-                                    <div class="card-body">
-                                      qsdqsd
+                                <div id="accordiong3" role="tablist">
+                                  <div class="card card-collapse" *ngFor="let cat3 of cat2.itemgroups">
+                                    <div class="card-header" role="tab" id="headingTwog3">
+                                      <h5 class="mb-0">
+                                        <a class="collapsed" data-toggle="collapse" href="#{{cat3.id}}" aria-expanded="false" aria-controls="collapseTwog3">
+                                          {{cat3.itemgroup3}}
+                                          <i class="material-icons">keyboard_arrow_down</i>
+                                        </a>
+                                      </h5>
+                                    </div>
+                                    <div id="{{cat3.id}}" class="collapse" role="tabpanel" aria-labelledby="headingTwo">
+                                      <div class="card-body">
+                                        qsdqsd
+                                      </div>
                                     </div>
                                   </div>
                                 </div>
-                              </div>
 
+                              </div>
                             </div>
                           </div>
                         </div>
+
+
+
                       </div>
-
-
-
                     </div>
                   </div>
                 </div>
-              </div>
+
+              </cdk-virtual-scroll-viewport>
+
+
             </div>
           </div>
         </div>
         <div class="col-md-8">
           <div class="row">
+            <cdk-virtual-scroll-viewport itemSize="15" style="width: 100%" autosize>
             <div class="col-md-4">
               <div class="card card-product card-plain no-shadow" data-colored-shadow="false">
                 <div class="card-header card-header-image">
@@ -241,9 +246,7 @@
               </div>
               <!-- end card -->
             </div>
-            <div class="col-md-3 ml-auto mr-auto">
-              <button rel="tooltip" class="btn btn-rose btn-round" data-original-title="" title="">Load more...</button>
-            </div>
+            </cdk-virtual-scroll-viewport>
           </div>
         </div>
       </div>

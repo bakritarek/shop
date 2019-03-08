@@ -37,4 +37,5 @@ export class CategoryService {
 
     return this.http.post(this.url + 'get_c2/' + id, this.Data, this.httpOptions);
   }
+
 }

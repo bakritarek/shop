@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
 import {CategoryService} from '../../services/category.service';
+import {ItemsService} from '../../services/items.service';
 
 @Component({
   selector: 'app-shop',
@@ -9,11 +10,13 @@ import {CategoryService} from '../../services/category.service';
 })
 export class ShopComponent implements OnInit {
   username;
-  categorys : any;
+  categorys: any;
   category: any;
-  g2= [];
-  constructor(private router: Router, private categoryService: CategoryService) {
+  items: any;
+  constructor(private router: Router, private categoryService: CategoryService, private itemsService: ItemsService) {
     this.getCategory();
+    this.getAllItems();
+
   }
   Refresh() {
    this.username = localStorage.getItem('name');
@@ -23,9 +26,12 @@ export class ShopComponent implements OnInit {
     this.categoryService.Category().subscribe(data => {
 
      this.categorys = data;
-      console.log(this.categorys);
     });
-
+  }
+  getAllItems() {
+    this.itemsService.AllItems().subscribe(items => {
+      this.items = items;
+    });
   }
   ngOnInit() {
     this.Refresh();
