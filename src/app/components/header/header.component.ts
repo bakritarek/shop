@@ -11,11 +11,11 @@ import {AuthService} from '../../services/auth.service';
 export class HeaderComponent implements OnInit {
 lang: string;
 loged;
-username = localStorage.getItem('username');
+companyname = localStorage.getItem('companyname');
 
   constructor(private translate: TranslateService, private router: Router, private auth: AuthService) {
     this.lang = localStorage.getItem('lang');
-    if (localStorage.getItem('username')) {
+    if (localStorage.getItem('companyno')) {
       this.loged = true;
     } else {
       this.loged = false;
@@ -34,7 +34,7 @@ username = localStorage.getItem('username');
 
   Logout() {
     this.router.navigate(['/login']);
-    return this.auth.Logout(localStorage.getItem('id'));
+    return this.auth.Logout(localStorage.getItem('companyno'));
 
   }
 

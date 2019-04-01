@@ -11,7 +11,7 @@ import {first} from 'rxjs/operators';
 })
 export class LoginComponent implements OnInit {
 instance;
-username;
+companyno;
 password;
 error;
   constructor(private Auth: AuthService, private router: Router, private zone: NgZone) { }
@@ -23,16 +23,12 @@ error;
   }
 
   login() {
-    this.Auth.Login(this.username, this.password, this.instance).subscribe(data => {
+    this.Auth.Login(this.companyno, this.password, this.instance).subscribe(data => {
+
       if (data['code'] === 1) {
-        localStorage.setItem('username', this.username);
-        localStorage.setItem('name', data['name']);
+        localStorage.setItem('companyno', this.companyno);
+        localStorage.setItem('companyname', data['companyname']);
         localStorage.setItem('systemid', this.instance);
-        localStorage.setItem('id', data['id']);
-        localStorage.setItem('stillLoged', '1');
-        localStorage.setItem('updatedElements', '0');
-        localStorage.setItem('salt', data['salt']);
-        console.log(data);
         this.router.navigate(['/']);
         window.location.reload();
 

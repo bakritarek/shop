@@ -15,6 +15,8 @@ import {ScrollingModule} from '@angular/cdk/scrolling';
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
 import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
+import { ItemComponent } from './components/shop/item/item.component';
+
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
 }
@@ -27,6 +29,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     ShopComponent,
     HeaderComponent,
     LoginComponent,
+    ItemComponent,
   ],
   imports: [
     BrowserModule,
@@ -44,6 +47,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     }),
     FormsModule,
     BrowserAnimationsModule,
+
   ],
   providers: [
     {

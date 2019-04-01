@@ -11,19 +11,20 @@ export class CategoryService {
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type':  'application/json',
+      'Access-Control-Allow-Origin' : '*'
     })
   };
   Data: any;
   Category() {
     this.Data = {
-      user: localStorage.getItem('username'),
+      companyno: localStorage.getItem('companyno'),
       salt: localStorage.getItem('salt'),
       systemid: localStorage.getItem('systemid'),
       request : 'get_all_category'
     };
     this.Data = JSON.stringify(this.Data);
 
-    return this.http.post(this.url + 'get_all', this.Data, this.httpOptions);
+    return this.http.post(this.url + 'get_all/' + localStorage.getItem('systemid'), this.Data, this.httpOptions);
   }
 
   C2(id: string) {

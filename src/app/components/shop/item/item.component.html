@@ -1,0 +1,62 @@
+<body class="product-page">
+<div class="page-header" data-parallax="true" filter-color="rose" style="background-color: #e5e5e5">
+  <div class="container">
+    <div class="row title-row">
+      <div class="col-md-4 ml-auto">
+        <button class="btn btn-white float-right"><i class="material-icons">shopping_cart</i> 0 Items</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="section section-gray">
+  <div class="container">
+    <div class="main main-raised main-product">
+      <div class="row">
+        <div class="col-md-6 col-sm-6">
+          <div class="tab-content">
+            <div class="tab-pane active" id="{{item.id}}">
+              <img #mainPic src="http://192.168.100.136/shop/web/items/{{systemid}}/{{item.itemno}}/{{item.photo}}"
+                    onError="this.src='http://192.168.100.136/shop/web/items/default/file_icon.png';" style="width: 400px;height: 400px" >
+            </div>
+          </div>
+          <ul class="nav flexi-nav" data-tabs="tabs" id="flexiselDemo1">
+            <li class="nav-item" *ngFor="let picture of item.pictures">
+              <a href="#product-page1" class="nav-link" data-toggle="tab" style="    border: 0px;" >
+                <img (click)="ChangeMainPic(picture, item.itemno)" src="http://192.168.100.136/shop/web/items/{{systemid}}/{{item.itemno}}/{{picture.url}}"
+                      onError="this.src='http://192.168.100.136/shop/web/items/default/file_icon.png';" style="width: 60px;height: 60px" >
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class="col-md-6 col-sm-6">
+          <h2 class="title"> {{item.text1}} - {{item.text2}} </h2>
+          <h4>Item N°: {{item.itemno}}</h4>
+          <h4 *ngIf="item.ean">EAN Code: {{item.ean}}</h4>
+          <h3 class="main-price">$335</h3>
+          <div id="accordion" role="tablist">
+            <div class="card card-collapse" *ngIf="item.itemdescription">
+              <div class="card-header" role="tab" id="headingOne">
+                <h5 class="mb-0">
+                  <a data-toggle="collapse" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    Description
+                    <i class="material-icons">keyboard_arrow_down</i>
+                  </a>
+                </h5>
+              </div>
+              <div id="collapseOne" class="collapse show" role="tabpanel" aria-labelledby="headingOne" data-parent="#accordion">
+                <div class="card-body scroll">
+                  <p [innerHTML]="item.itemdescription.text"> </p>
+                </div>
+              </div>
+            </div>
+          </div>
+         <div class="space"></div>
+          <div class="row pull-right">
+            <button class="btn btn-rose btn-round">Add to Cart &#xA0;<i class="material-icons">shopping_cart</i></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>

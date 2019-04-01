@@ -25,12 +25,12 @@
                 </button>
               </h4>
               <cdk-virtual-scroll-viewport itemSize="15">
-                  <div>{{categorys.length}}</div>
+
                 <div id="accordion" role="tablist"  *cdkVirtualFor="let cat of categorys">
                   <div class="card card-collapse" >
                     <div class="card-header" role="tab" id="headingTwo">
                       <h5 class="mb-0">
-                        <a class="collapsed" data-toggle="collapse" href="#{{cat.id}}" aria-expanded="false" aria-controls="collapseTwo">
+                        <a class="collapsed" data-toggle="collapse" href="#{{cat.id}}" aria-expanded="false" aria-controls="collapseTwo" (click)="selectCat(cat.itemgroup1)">
                           {{cat.itemgroup1}}
                           <i class="material-icons">keyboard_arrow_down</i>
                         </a>
@@ -42,7 +42,7 @@
                           <div class="card card-collapse" *ngFor="let cat2 of cat.itemgroups">
                             <div class="card-header" role="tab" id="headingTwog2">
                               <h5 class="mb-0">
-                                <a class="collapsed" data-toggle="collapse" href="#{{cat2.id}}" aria-expanded="false" aria-controls="collapseTwog2">
+                                <a class="collapsed" data-toggle="collapse" href="#{{cat2.id}}" aria-expanded="false" aria-controls="collapseTwog2" (click)="selectSubCat(cat.itemgroup1, cat2.itemgroup2)">
                                   {{cat2.itemgroup2}}
                                   <i class="material-icons">keyboard_arrow_down</i>
                                 </a>
@@ -55,7 +55,7 @@
                                   <div class="card card-collapse" *ngFor="let cat3 of cat2.itemgroups">
                                     <div class="card-header" role="tab" id="headingTwog3">
                                       <h5 class="mb-0">
-                                        <a class="collapsed" data-toggle="collapse" href="#{{cat3.id}}" aria-expanded="false" aria-controls="collapseTwog3">
+                                        <a class="collapsed" data-toggle="collapse" href="#{{cat3.id}}" aria-expanded="false" aria-controls="collapseTwog3" (click)="selectSubSubCat(cat1.itemgroup1, cat2.itemgroup2, cat3.itemgroup3)">
                                           {{cat3.itemgroup3}}
                                           <i class="material-icons">keyboard_arrow_down</i>
                                         </a>
@@ -88,21 +88,23 @@
           </div>
         </div>
         <div class="col-md-8">
-          <div class="row">
-            <cdk-virtual-scroll-viewport itemSize="15" style="width: 100%" autosize>
-            <div class="col-md-4">
+          <div class="row ">
+
+            <cdk-virtual-scroll-viewport itemSize="{{items.length}}" style="width: 100%;height:100%; position: qsdqsd">
+            <div class="col-md-4 " *cdkVirtualFor="let it of items; let i=index" style="max-width: 100%;">
               <div class="card card-product card-plain no-shadow" data-colored-shadow="false">
-                <div class="card-header card-header-image">
-                  <a href="#">
-                    <img src="../assets/img/kit/pro/examples/suit-1.jpg" alt="...">
+                <div class="card-header card-header-image" style="width:20%;height: 20%;margin: auto;" (click)="ItemDetail(it.id)">
+                  <a >
+                    <img  src="http://192.168.100.136/shop/web/items/{{systemid}}/{{it.itemno}}/{{it.photo}}"
+                          onError="this.src='http://192.168.100.136/shop/web/items/default/file_icon.png';" alt="..." >
                   </a>
                 </div>
                 <div class="card-body">
-                  <a href="#">
-                    <h4 class="card-title">Polo Ralph Lauren</h4>
+                  <a (click)="ItemDetail(it.id)">
+                    <h4 class="card-title" style="text-align: justify">{{it.text1}} - {{it.itemno}}</h4>
                   </a>
                   <p class="description">
-                    Impeccably tailored in Italy from lightweight navy wool.
+                    {{it.text2}}
                   </p>
                 </div>
                 <div class="card-footer justify-content-between">
@@ -116,225 +118,8 @@
               </div>
               <!-- end card -->
             </div>
-            <div class="col-md-4">
-              <div class="card card-product card-plain no-shadow" data-colored-shadow="false">
-                <div class="card-header card-header-image">
-                  <a href="#">
-                    <img src="../assets/img/kit/pro/examples/suit-2.jpg" alt="...">
-                  </a>
-                </div>
-                <div class="card-body">
-                  <a href="#">
-                    <h4 class="card-title">Wooyoungmi</h4>
-                  </a>
-                  <p class="description">
-                    Dark-grey slub wool, pintucked notch lapels.
-                  </p>
-                </div>
-                <div class="card-footer justify-content-between">
-                  <div class="price-container">
-                    <span class="price">€ 555</span>
-                  </div>
-                  <button class="btn btn-rose btn-link btn-fab btn-fab-mini btn-round pull-right" rel="tooltip" title="" data-placement="left" data-original-title="Add to wishlist">
-                    <i class="material-icons">favorite_border</i>
-                  </button>
-                </div>
-              </div>
-              <!-- end card -->
-            </div>
-            <div class="col-md-4">
-              <div class="card card-product card-plain no-shadow" data-colored-shadow="false">
-                <div class="card-header card-header-image">
-                  <a href="#">
-                    <img src="../assets/img/kit/pro/examples/suit-3.jpg" alt="...">
-                  </a>
-                </div>
-                <div class="card-body">
-                  <a href="#">
-                    <h4 class="card-title">Tom Ford</h4>
-                  </a>
-                  <p class="description">
-                    Immaculate tailoring is TOM FORD's forte.
-                  </p>
-                </div>
-                <div class="card-footer justify-content-between">
-                  <div class="price-container">
-                    <span class="price"> € 879</span>
-                  </div>
-                  <button class="btn btn-rose btn-link btn-fab btn-fab-mini btn-round pull-right" rel="tooltip" title="" data-placement="left" data-original-title="Add to wishlist">
-                    <i class="material-icons">favorite_border</i>
-                  </button>
-                </div>
-              </div>
-              <!-- end card -->
-            </div>
-            <div class="col-md-4">
-              <div class="card card-product card-plain no-shadow" data-colored-shadow="false">
-                <div class="card-header card-header-image">
-                  <a href="#">
-                    <img src="../assets/img/kit/pro/examples/suit-4.jpg" alt="...">
-                  </a>
-                </div>
-                <div class="card-body">
-                  <a href="#">
-                    <h4 class="card-title">Thom Sweeney</h4>
-                  </a>
-                  <p class="description">
-                    It's made from lightweight grey wool woven.
-                  </p>
-                </div>
-                <div class="card-footer justify-content-between">
-                  <div class="price-container">
-                    <span class="price"> € 680</span>
-                  </div>
-                  <button class="btn btn-rose btn-link btn-fab btn-fab-mini btn-round pull-right" rel="tooltip" title="" data-placement="left" data-original-title="Add to wishlist">
-                    <i class="material-icons">favorite_border</i>
-                  </button>
-                </div>
-              </div>
-              <!-- end card -->
-            </div>
-            <div class="col-md-4">
-              <div class="card card-product card-plain no-shadow" data-colored-shadow="false">
-                <div class="card-header card-header-image">
-                  <a href="#">
-                    <img src="../assets/img/kit/pro/examples/suit-5.jpg" alt="...">
-                  </a>
-                </div>
-                <div class="card-body">
-                  <a href="#">
-                    <h4 class="card-title">Kingsman</h4>
-                  </a>
-                  <p class="description">
-                    Crafted from khaki cotton and fully canvassed.
-                  </p>
-                </div>
-                <div class="card-footer justify-content-between">
-                  <div class="price-container">
-                    <span class="price"> € 725</span>
-                  </div>
-                  <button class="btn btn-rose btn-link btn-fab btn-fab-mini btn-round pull-right" rel="tooltip" title="" data-placement="left" data-original-title="Remove from wishlist">
-                    <i class="material-icons">favorite</i>
-                  </button>
-                </div>
-              </div>
-              <!-- end card -->
-            </div>
-            <div class="col-md-4">
-              <div class="card card-product card-plain no-shadow" data-colored-shadow="false">
-                <div class="card-header card-header-image">
-                  <a href="#">
-                    <img src="../assets/img/kit/pro/examples/suit-6.jpg" alt="...">
-                  </a>
-                </div>
-                <div class="card-body">
-                  <a href="#">
-                    <h4 class="card-title">Boglioli</h4>
-                  </a>
-                  <p class="description">
-                    Masterfully crafted in Northern Italy.
-                  </p>
-                </div>
-                <div class="card-footer justify-content-between">
-                  <div class="price-container">
-                    <span class="price">€ 699</span>
-                  </div>
-                  <button class="btn btn-rose btn-link btn-fab btn-fab-mini btn-round pull-right" rel="tooltip" title="" data-placement="left" data-original-title="Add to wishlist">
-                    <i class="material-icons">favorite_border</i>
-                  </button>
-                </div>
-              </div>
-              <!-- end card -->
-            </div>
             </cdk-virtual-scroll-viewport>
           </div>
-        </div>
-      </div>
-      <br>
-      <h2 class="section-title">News in fashion</h2>
-      <div class="row">
-        <div class="col-md-4">
-          <div class="card card-background" style="background-image: url(../assets/img/kit/pro/examples/color1.jpg)">
-            <div class="card-body">
-              <h6 class="card-category text-info">Productivy Apps</h6>
-              <a href="#pablo">
-                <h3 class="card-title">The best trends in fashion 2017</h3>
-              </a>
-              <p class="card-description">
-                Don't be scared of the truth because we need to restart the human foundation in truth And I love you like Kanye loves Kanye I love Rick Owens’ bed design but the back is...
-              </p>
-              <a href="#pablo" class="btn btn-white btn-round">
-                <i class="material-icons">subject</i> Read
-              </a>
-            </div>
-          </div>
-          <!-- end card -->
-        </div>
-        <div class="col-md-4">
-          <div class="card card-background" style="background-image: url(../assets/img/kit/pro/examples/color3.jpg)">
-            <div class="card-body">
-              <h6 class="card-category text-info">Fashion News</h6>
-              <h3 class="card-title">Kanye joins the Yeezy team at Adidas</h3>
-              <p class="card-description">
-                Don't be scared of the truth because we need to restart the human foundation in truth And I love you like Kanye loves Kanye I love Rick Owens’ bed design but the back is...
-              </p>
-              <a href="#pablo" class="btn btn-white btn-round">
-                <i class="material-icons">subject</i> Read
-              </a>
-            </div>
-          </div>
-          <!-- end card -->
-        </div>
-        <div class="col-md-4">
-          <div class="card card-background" style="background-image: url(../assets/img/kit/pro/examples/color2.jpg)">
-            <div class="card-body">
-              <h6 class="card-category text-info">Productivy Apps</h6>
-              <a href="#pablo">
-                <h3 class="card-title">Learn how to use the new colors of 2017</h3>
-              </a>
-              <p class="card-description">
-                Don't be scared of the truth because we need to restart the human foundation in truth And I love you like Kanye loves Kanye I love Rick Owens’ bed design but the back is...
-              </p>
-              <a href="#pablo" class="btn btn-white btn-round">
-                <i class="material-icons">subject</i> Read
-              </a>
-            </div>
-          </div>
-          <!-- end card -->
-        </div>
-        <div class="col-md-6">
-          <div class="card card-background" style="background-image: url(../assets/img/kit/pro/dg3.jpg)">
-            <div class="card-body">
-              <h6 class="card-category text-info">Tutorials</h6>
-              <a href="#pablo">
-                <h3 class="card-title">Trending colors of 2017</h3>
-              </a>
-              <p class="card-description">
-                Don't be scared of the truth because we need to restart the human foundation in truth And I love you like Kanye loves Kanye I love Rick Owens’ bed design but the back is...
-              </p>
-              <a href="#pablo" class="btn btn-white btn-round">
-                <i class="material-icons">subject</i> Read
-              </a>
-            </div>
-          </div>
-          <!-- end card -->
-        </div>
-        <div class="col-md-6">
-          <div class="card card-background" style="background-image: url(../assets/img/kit/pro/dg1.jpg)">
-            <div class="card-body">
-              <h6 class="card-category text-info">Productivy Style</h6>
-              <a href="#pablo">
-                <h3 class="card-title">Fashion &amp; Style 2017</h3>
-              </a>
-              <p class="card-description">
-                Don't be scared of the truth because we need to restart the human foundation in truth And I love you like Kanye loves Kanye I love Rick Owens’ bed design but the back is...
-              </p>
-              <a href="#pablo" class="btn btn-white btn-round">
-                <i class="material-icons">subject</i> read
-              </a>
-            </div>
-          </div>
-          <!-- end card -->
         </div>
       </div>
     </div>

@@ -7,9 +7,12 @@ import {catchError} from 'rxjs/operators';
 })
 
 export class AuthService {
+  invocation = new XMLHttpRequest();
    httpOptions = {
     headers: new HttpHeaders({
       'Content-Type':  'application/json',
+      'Access-Control-Request-Headers':  '*',
+      'Access-Control-Allow-Headers':  '*',
     })
   };
   LoginData: any;
@@ -17,22 +20,19 @@ export class AuthService {
   handleError;
   constructor(private http: HttpClient) { }
 
-  Login(username: string, password: string, systemid: string) {
+  Login(companyno: string, password: string, systemid: string) {
     this.LoginData = {
-      login: username,
+      company_no: companyno,
       pswrd: password,
       systmId: systemid
     };
-    return this.http.post(this.url + 'user/login', this.LoginData, this.httpOptions);
+    return this.http.post(this.url + 'user/login/' + systemid, this.LoginData, this.httpOptions);
   }
 
   Logout(id: string) {
-    localStorage.setItem('username', '');
+    localStorage.setItem('companyno', '');
     localStorage.setItem('systemid', '');
-    localStorage.setItem('name', '');
-    localStorage.setItem('stillLoged', '');
-    localStorage.setItem('updatedElements', '0');
-    localStorage.setItem('view', '');
+    localStorage.setItem('companyname', '');
 
     return 1;
   }
