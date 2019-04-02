@@ -15,18 +15,14 @@ export class ShopComponent implements OnInit {
   categorys: any;
   category: any;
   item: Item;
-  items =  [];
+  items: any;
   selectedCategory;
   itemsize;
   systemid = localStorage.getItem('systemid');
   selectedItem;
   constructor(private router: Router, private categoryService: CategoryService, private itemsService: ItemsService) {
     this.getCategory();
-    setTimeout(() => {
-
-      this.getAllItems();
-      console.log(this.items);
-    }, 100);
+    this.getAllItems();
 
 
   }
@@ -42,18 +38,8 @@ export class ShopComponent implements OnInit {
   }
   getAllItems() {
     this.itemsService.AllItems().subscribe(items => {
-      items.forEach((value => {
-        this.item = {
-          id: value.id,
-          text1: value.text1,
-          text2: value.text2,
-          price: '500',
-          itemno: value.itemno,
-          photo: value.photo,
-        };
-        this.items.push(this.item);
-      }));
-      console.log(this.items.length);
+      this.items = items;
+      console.log(this.items);
     });
   }
   ngOnInit() {
@@ -68,50 +54,19 @@ export class ShopComponent implements OnInit {
     }
 
     this.itemsService.getItemsBy(this.selectedCategory).subscribe(items => {
-      items.forEach((value => {
-        this.item = {
-          id: value.id,
-          text1: value.text1,
-          text2: value.text2,
-          price: '500',
-          itemno: value.itemno,
-          photo: value.photo,
-        };
-        this.items.push(this.item);
-      }));
+     this.items = items;
     });
   }
 
   selectSubCat(parent: string, cat2) {
 
     this.itemsService.getSubCat(parent, cat2).subscribe(items => {
-      items.forEach((value => {
-        this.item = {
-          id: value.id,
-          text1: value.text1,
-          text2: value.text2,
-          price: '500',
-          itemno: value.itemno,
-          photo: value.photo,
-        };
-        this.items.push(this.item);
-      }));
+     this.items = items;
     });
   }
   selectSubSubCat(grandparent: string, parent: string, cat3: string) {
     this.itemsService.getSubSubCat(grandparent, parent, cat3).subscribe(items => {
-      items.forEach((value => {
-        this.item = {
-          id: value.id,
-          text1: value.text1,
-          text2: value.text2,
-          price: '500',
-          itemno: value.itemno,
-          photo: value.photo,
-        };
-        this.items.push(this.item);
-      }));
-      console.log(this.items.length);
+     this.items = items;
     });
   }
 
