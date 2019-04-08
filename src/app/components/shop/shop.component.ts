@@ -16,6 +16,7 @@ export class ShopComponent implements OnInit {
   category: any;
   item: Item;
   items: any;
+  items2 = [];
   selectedCategory;
   itemsize;
   systemid = localStorage.getItem('systemid');

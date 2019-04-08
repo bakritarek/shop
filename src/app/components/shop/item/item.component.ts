@@ -22,8 +22,9 @@ export class ItemComponent implements OnInit {
   getItemDetails() {
     this.id = this.route.snapshot.paramMap.get('id');
     this.itemService.getitemDetail(this.id).subscribe(item => {
+      console.log(item);
      this.item = item;
-     console.log(item);
+
     });
   }
 

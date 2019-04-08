@@ -9,6 +9,7 @@
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
 </head>
 <body>
   <app-root></app-root>
@@ -82,32 +83,6 @@
 <script src="./assets/assets/js/material-kit.min40a0.js?v=2.0.2"></script>
 <!-- Fixed Sidebar Nav - js With initialisations For Demo Purpose, Don't Include it in your project -->
 <script src="./assets/assets/assets-for-demo/js/material-kit-demo.js"></script>
-<script>
-  $(document).ready(function() {
-
-    var slider2 = document.getElementById('sliderRefine');
-
-    noUiSlider.create(slider2, {
-      start: [101, 790],
-      connect: true,
-      range: {
-        'min': [30],
-        'max': [900]
-      }
-    });
-
-    var limitFieldMin = document.getElementById('price-left');
-    var limitFieldMax = document.getElementById('price-right');
-
-    slider2.noUiSlider.on('update', function(values, handle) {
-      if (handle) {
-        limitFieldMax.innerHTML = $('#price-right').data('currency') + Math.round(values[handle]);
-      } else {
-        limitFieldMin.innerHTML = $('#price-left').data('currency') + Math.round(values[handle]);
-      }
-    });
-  });
-</script>
 
 </body>
 
